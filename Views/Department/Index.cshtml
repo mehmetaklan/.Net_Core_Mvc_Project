@@ -1,0 +1,30 @@
+﻿@model List<Departman_Management.Models.Department>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class=""><a href="/Department/Add" class="btn btn-success">Add Category ➕</a></div>
+<table class=" mt-3 table table-bordered table-dark text-center table-lg">
+    <thead>
+        <tr>
+            <th>Department Id</th>
+            <th>Department Name</t>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dpt in Model)
+        {
+            <tr>
+                <td>@dpt.Id</td>
+                <td>@dpt.Name</td>
+                <td><a class="btn btn-warning" href="/Department/Edit/@dpt.Id">🔄</a></td>
+                <td><a class="btn btn-danger" href="/Department/Delete/@dpt.Id">❌</a></td>
+                <td><a class="btn btn-info" href="/Department/Details/@dpt.Id">ℹ</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
