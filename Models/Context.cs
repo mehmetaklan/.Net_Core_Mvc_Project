@@ -11,6 +11,7 @@ namespace Departman_Management.Models
 
         public DbSet<Department> departments { get; set; }
         public DbSet<Employee> employees { get; set; }
+        public DbSet<Admin> admins { get; set; }
 
     }
 }

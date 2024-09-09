@@ -1,4 +1,5 @@
 ﻿using Departman_Management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Departman_Management.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,7 +22,7 @@ namespace Departman_Management.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index","Department");
         }
 
         public IActionResult Privacy()

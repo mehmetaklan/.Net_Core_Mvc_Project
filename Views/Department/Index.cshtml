@@ -11,7 +11,6 @@
             <th>Department Name</t>
             <th>Edit</th>
             <th>Delete</th>
-            <th>Details</th>
         </tr>
     </thead>
     <tbody>
@@ -19,10 +18,9 @@
         {
             <tr>
                 <td>@dpt.Id</td>
-                <td>@dpt.Name</td>
+                <td><a class="o" href="/Department/Details/@dpt.Id">@dpt.Name</a></td>
                 <td><a class="btn btn-warning" href="/Department/Edit/@dpt.Id">🔄</a></td>
                 <td><a class="btn btn-danger" href="/Department/Delete/@dpt.Id">❌</a></td>
-                <td><a class="btn btn-info" href="/Department/Details/@dpt.Id">ℹ</a></td>
             </tr>
         }
     </tbody>

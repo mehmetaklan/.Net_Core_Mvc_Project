@@ -1,5 +1,7 @@
 ﻿using Departman_Management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Departman_Management.Controllers
@@ -7,6 +9,7 @@ namespace Departman_Management.Controllers
     public class DepartmentController : Controller
     {
         Context ContextDB = new Context();
+        [Authorize] 
         public IActionResult Index()
         {
             var Values = ContextDB.departments.ToList();
@@ -48,5 +51,11 @@ namespace Departman_Management.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Details(int id)
+        {
+            var emps = ContextDB.employees.Where(x =>x.Department.Id == id).ToList();
+            ViewBag.Title = ContextDB.departments.Find(id).Name;
+            return View(emps);
+        }
     }
 }

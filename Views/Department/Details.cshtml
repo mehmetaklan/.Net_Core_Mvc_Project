@@ -1,0 +1,23 @@
+﻿@model List<Departman_Management.Models.Employee>
+
+
+<h4>@ViewBag.Title</h4>
+<table class=" mt-3 table table-bordered table-dark text-center table-lg">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th> Name Surname</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.FirstName  @emp.LastName</td>
+                <td>@emp.City</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
 ﻿using Departman_Management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +8,11 @@ using System.Linq;
 
 namespace Departman_Management.Controllers
 {
+    
     public class EmployeeController : Controller
     {
         Context ContextDB = new Context();
+        [Authorize]
         public IActionResult Index()
         {
             var Values = ContextDB.employees.Include(x=>x.Department).ToList();
@@ -19,7 +22,7 @@ namespace Departman_Management.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-             List<SelectListItem> dprtmnts = (from x in ContextDB.departments.ToList()
+            List<SelectListItem> dprtmnts = (from x in ContextDB.departments.ToList()
                                              select new SelectListItem
                                              {
                                                  Text = x.Name,
@@ -37,5 +40,20 @@ namespace Departman_Management.Controllers
             ContextDB.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+			List<SelectListItem> dprtmnts = (from x in ContextDB.departments.ToList()
+											 select new SelectListItem
+											 {
+												 Text = x.Name,
+												 Value = x.Id.ToString()
+											 }).ToList();
+			var emp = ContextDB.employees.Find(id);
+            ViewBag.dprtmnts = dprtmnts.ToList();
+			return View(emp);
+        }
+
     }
 }
